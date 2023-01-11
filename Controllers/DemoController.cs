@@ -92,7 +92,9 @@ namespace DemoAPI.Controllers
             _context.DemoItems.Add(demoItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDemoItem", new { id = demoItem.Id }, demoItem);
+            // nameof keyword is used to avoid hard-coding the action name in the CreatedAtAction call
+            // return CreatedAtAction("GetDemoItem", new { id = demoItem.Id }, demoItem);
+            return CreatedAtAction(nameof(GetDemoItem), new { id = demoItem.Id }, demoItem);
         }
 
         // DELETE: api/Demo/5
